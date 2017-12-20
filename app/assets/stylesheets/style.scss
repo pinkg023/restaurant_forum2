@@ -1,4 +1,10 @@
 .thumbnail {
-   display: inline-block;
-   max-width:30%
+  display: inline-block;
+  max-width:30%;
 }
+
+
+th, td {
+  max-width:100px;
+}
+
