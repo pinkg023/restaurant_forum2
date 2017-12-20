@@ -43,6 +43,9 @@
     <%= f.text_field :name , class: "form-control" %>
   </div>
 
+  <%= f.label :Category %>
+  <%= f.collection_select :category_id, Category.all, :id, :name, {prompt: true}, {class: "form-control"} %>
+  <br>
 
   <div class="form-group">
     <%= f.label :tel %>
@@ -73,10 +76,10 @@
     <%= image_tag @restaurant.image if @restaurant.image? %>
   </div>
   <%= f.file_field :image %>
+  <br>
+  <%= f.submit %>
+  
 
-
-
-    <%= f.submit %>
   <% end %>
 
 </div>

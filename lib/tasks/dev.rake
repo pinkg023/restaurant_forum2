@@ -10,7 +10,6 @@ namespace :dev do
         address: FFaker::Address.street_address,
         description: FFaker::Lorem.paragraph,
         category: Category.all.sample,
-        image: "http://via.placeholder.com/350x200"
       )
     end
     puts "have created fake restaurants"
