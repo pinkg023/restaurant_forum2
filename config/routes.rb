@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :restaurants
+    resources :categories   # 加入Categories資料表相關用route
     root "restaurants#index"
   end
 
