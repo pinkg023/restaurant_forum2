@@ -1,15 +1,16 @@
 class Admin::CategoriesController < ApplicationController
   before_action :authenticate_user!
   before_action :authenticate_admin
+  before_action :set_category, :only => [:index, :edit, :update, :destroy]
 
   def index
     @categories = Category.all
     
-    if params[:id]
-      @category = Category.find(params[:id])
-    else
-      @category = Category.new
-    end
+    #if params[:id]
+    #  @category = Category.find(params[:id])
+    #else
+    #  @category = Category.new
+    #end
   end
 
   def create
@@ -36,9 +37,9 @@ class Admin::CategoriesController < ApplicationController
   end
 
   def destroy
-    @category = Category.find(params[:id])
+    #@category = Category.find(params[:id])
     @category_default=Category.find(0)
-    @category_default.restaurants << @category.restaurants
+    @category_default.restaurants << @category.restaurants    #當所屬分類被刪除時，修改餐廳分類為預設值
     @category.destroy
     flash[:alert] = "category was successfully deleted"
     redirect_to admin_categories_path
@@ -46,6 +47,14 @@ class Admin::CategoriesController < ApplicationController
 
 
   private
+
+  def set_category
+    if params[:id]
+      @category = Category.find(params[:id])
+    else
+      @category = Category.new
+    end
+  end
 
   def category_params
     params.require(:category).permit(:name)
