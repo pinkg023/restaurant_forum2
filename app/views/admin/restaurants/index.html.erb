@@ -1,52 +1,56 @@
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<div class="container">
 
- <% if current_user %>
-  Hi, <%= current_user.email %>
-    <%= link_to('登出', destroy_user_session_path, method: :delete) %> |
-    <%= link_to('修改密碼', edit_user_registration_path) %>
-  <% else %>
-    <%= link_to('註冊', new_user_registration_path) %> |
-    <%= link_to('登入', new_user_session_path) %>
- <% end %>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
 
-<h1>餐廳後台</h1>
-<div>
-  <%= link_to 'Restaurant', admin_restaurants_path %> |
-  <%= link_to 'Categories', admin_categories_path %>
+   <% if current_user %>
+    Hi, <%= current_user.email %>
+      <%= link_to('登出', destroy_user_session_path, method: :delete) %> |
+      <%= link_to('修改密碼', edit_user_registration_path) %>
+    <% else %>
+      <%= link_to('註冊', new_user_registration_path) %> |
+      <%= link_to('登入', new_user_session_path) %>
+   <% end %>
+
+  <h1>餐廳後台</h1>
+  <div>
+    <%= link_to 'Restaurant', admin_restaurants_path %> |
+    <%= link_to 'Categories', admin_categories_path %>
+  </div>
+
+  <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col", style='text-align:center;vertical-align:middle'> 餐廳名稱 </th>
+            <th scope="col", style='text-align:center;vertical-align:middle'> 類別 </th>
+            <th class="th_desc", scope="col", style='text-align:center;vertical-align:middle'> 描述 </th>
+            <th scope="col", style='text-align:center;vertical-align:middle'> 顯示 </th>
+            <th scope="col", style='text-align:center;vertical-align:middle'> 修改 </th>
+            <th scope="col", style='text-align:center;vertical-align:middle'> 刪除 </th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @restaurants.each do |restaurant| %>
+          <tr>          
+            <td style='text-align:center;vertical-align:middle'><%= restaurant.name %></td>
+            <td style='text-align:center;vertical-align:middle'><%= restaurant.category.name %></td>        
+            <td class="td_desc", style='text-align:center;vertical-align:middle'><%= restaurant.description %></td>      
+            <td style='text-align:center;vertical-align:middle'><%= link_to 'Show', admin_restaurant_path(restaurant) %></td>
+            <td style='text-align:center;vertical-align:middle'><%= link_to 'Edit', edit_admin_restaurant_path(restaurant) %></td>
+            <td style='text-align:center;vertical-align:middle'><%= link_to 'Destroy', admin_restaurant_path(restaurant), method: :delete, data:{ confirm: "Are you sure?" } %></td>         
+          </tr>
+        <% end %>
+        </tbody>
+  </table>
+
+  <hr class="style13">
+
+  <div class="form-group">
+  <button type="button" class="btn pull-right"><%= link_to '新增餐廳', new_admin_restaurant_path %></button>
+  </div>
+
+  <p><%= flash[:alert] %></p>
+
+  <%= paginate @restaurants %>
+
 </div>
-
-<table class="table table-striped">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col", style='text-align:center;vertical-align:middle'> 餐廳名稱 </th>
-          <th scope="col", style='text-align:center;vertical-align:middle'> 類別 </th>
-          <th class="th_desc", scope="col", style='text-align:center;vertical-align:middle'> 描述 </th>
-          <th scope="col", style='text-align:center;vertical-align:middle'> 顯示 </th>
-          <th scope="col", style='text-align:center;vertical-align:middle'> 修改 </th>
-          <th scope="col", style='text-align:center;vertical-align:middle'> 刪除 </th>
-        </tr>
-      </thead>
-      <tbody>
-      <% @restaurants.each do |restaurant| %>
-        <tr>          
-          <td style='text-align:center;vertical-align:middle'><%= restaurant.name %></td>
-          <td style='text-align:center;vertical-align:middle'><%= restaurant.category.name %></td>        
-          <td class="td_desc", style='text-align:center;vertical-align:middle'><%= restaurant.description %></td>      
-          <td style='text-align:center;vertical-align:middle'><%= link_to 'Show', admin_restaurant_path(restaurant) %></td>
-          <td style='text-align:center;vertical-align:middle'><%= link_to 'Edit', edit_admin_restaurant_path(restaurant) %></td>
-          <td style='text-align:center;vertical-align:middle'><%= link_to 'Destroy', admin_restaurant_path(restaurant), method: :delete, data:{ confirm: "Are you sure?" } %></td>         
-        </tr>
-      <% end %>
-      </tbody>
-</table>
-
-<hr class="style13">
-
-<div class="form-group">
-<button type="button" class="btn pull-right"><%= link_to '新增餐廳', new_admin_restaurant_path %></button>
-</div>
-
-<p><%= flash[:alert] %></p>
-
-<%= paginate @restaurants %>
