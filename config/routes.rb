@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   resources :restaurants, only: [:index, :show]
   root "restaurants#index"
 
+  resources :categories, only: :show
+  root "categories#index"
+
   namespace :admin do
     resources :restaurants
     resources :categories   # 加入Categories資料表相關用route
