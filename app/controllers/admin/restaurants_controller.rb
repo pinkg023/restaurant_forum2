@@ -8,6 +8,7 @@ class Admin::RestaurantsController < Admin::BaseController
 
   def new
     @restaurant = Restaurant.new
+    @restaurant.category_id = 0
   end
 
   def create

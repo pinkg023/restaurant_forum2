@@ -3,8 +3,22 @@
   max-width:30%;
 }
 
-
 th, td {
   max-width:30%;
 }
 
+.restaurant-item {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 4px;
+  margin-bottom: 20px;
+}
+
+.restaurant-item img {
+  max-height: 180px;
+  max-width: 100%;
+}
+
+.restaurant-item .caption {
+  padding: 10px;
+}
