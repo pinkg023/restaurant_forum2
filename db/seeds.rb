@@ -20,6 +20,8 @@ category_list =[
   { name: "複合式料理" }
 ]
 
+Category.create( name: "未分類", id: 0 )
+
 category_list.each do |category|
   Category.create( name: category[:name] )
 end
