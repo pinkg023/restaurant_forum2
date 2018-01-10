@@ -1,0 +1,31 @@
+<div class="container">
+   <% if current_user %>
+    Hi, <%= current_user.email %>
+      <%= link_to('登出', destroy_user_session_path, method: :delete) %> |
+      <%= link_to('修改密碼', edit_user_registration_path) %>
+    <% else %>
+      <%= link_to('註冊', new_user_registration_path) %> |
+      <%= link_to('登入', new_user_session_path) %>
+   <% end %>
+
+  <h1>使用者列表</h1>  
+  <%= link_to '回到餐廳列表', restaurants_path %>
+  <div>
+    <table class="table table-striped">
+          <tbody>
+          <% @users.each do |user| %>
+            <div class="col-sm-6 col-md-4">
+              <div class="user-item">                
+                <p><%= user.email %></p>
+                <%= image_tag user.image, class: "img-responsive center-block" %>
+                <br>                
+              </div>
+            </div>
+          <% end %>
+          </tbody>
+    </table>
+
+    <hr class="style13">
+
+    <p><%= flash[:alert] %></p>
+</div>

@@ -1,0 +1,36 @@
+<div class="form container">
+
+  <%= form_for  [@user] do |f| %>
+  
+  <h1><%= @user.email %></h1>
+
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name , class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Introduce" %>
+    <%= f.text_field :intro, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :role %> : <%= @user.role %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :image, "Photo" %>
+  </div>
+  <div class = "thumbnail">
+    <%= image_tag @user.image if @user.image? %>
+  </div>
+  <%= f.file_field :image %>
+  <br>
+  <%= f.submit %>
+  <% end %>
+  <br>
+  <%= link_to '回到餐廳列表', restaurants_path %>
+
+</div>
+
+

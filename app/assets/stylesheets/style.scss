@@ -7,6 +7,11 @@ th, td {
   max-width:30%;
 }
 
+.inline-block{
+  display: inline-block;
+  color: red;
+}
+
 .restaurant-item {
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -36,5 +41,18 @@ th, td {
 
 .nav-pills-center > li {
   float: none;
+  display: inline-block;
+}
+
+.middle {
+  padding: 15%;
+  margin: auto;
+}
+
+.btn a{
+  color: white;
+}
+
+.user_photo{
   display: inline-block;
 }
