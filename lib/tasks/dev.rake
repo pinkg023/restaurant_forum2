@@ -23,6 +23,8 @@ namespace :dev do
     User.create!(email: "test@test",
         password: "testtest",
         name: "testman",
+        intro: "admin account for test.",
+        role: "admin",
       )
 
     20.times do |i|

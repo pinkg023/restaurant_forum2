@@ -14,9 +14,29 @@
       <br><br>
       <button type="button" class="btn btn-primary"><%= link_to('編輯用戶資料', edit_user_path(current_user)) %></button>     
     </div>
-    <div class="clearfix"></div>
-    <hr>
   </div>
 </div>
+
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><%= @user.comments.count %>個已評論餐廳</h3>
+    </div>
+    <div class="panel-body">
+      <% @user.comments.each do |comment| %>
+        <div>        
+          <div class="col-sm-3 col-md-2">           
+              <%= image_tag comment.restaurant.image, class: "img-responsive center-block" %><br>
+              <p><%= link_to comment.restaurant.name, restaurant_path(comment.restaurant.id) %></p>
+              <br>                         
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
 
 
