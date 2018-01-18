@@ -4,8 +4,7 @@
       <h1><%= @restaurant.name %></h1>
       <p>[<%= @restaurant.category.name %>]</p>
     </div>
-
-    <div class="col-md-4">
+    <div class="col-md-6">
       <%= image_tag @restaurant.image, class: "img-responsive center-block" %>
       <br>
       <div class="well">
@@ -13,22 +12,20 @@
           <li><strong>Opening Hour:</strong> <%= @restaurant.opening_hours %></li>
           <li><strong>Tel:</strong> <%= @restaurant.tel %></li>
           <li><strong>Address:</strong> <%= @restaurant.address %></li>
+          <br>
+          <li><%= simple_format @restaurant.description %></li>
+          <button type="button" class="btn btn-primary"><%= link_to('Dashboard', dashboard_restaurant_path(@restaurant)) %>
+          </button>   
         </ul>
       </div>
-    </div>
-    <div class="col-md-8">
-      <%= simple_format @restaurant.description %>
-    </div>
-
+    </div>    
     <div class="clearfix"></div>
-
     <hr>
-
   </div>
 </div>
 
 <div class="container">
-  <div class="row">
+  <div class="row col-md-8">
 
     <!-- 顯示與餐廳相關的評論 -->
     <% @restaurant.comments.each do |comment| %>
