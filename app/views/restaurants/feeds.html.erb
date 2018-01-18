@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="row">
+    <% if current_user %>
+      Hi, <%= current_user.email %>
+      <%= link_to('登出', destroy_user_session_path, method: :delete) %> |
+      <%= link_to('修改密碼', edit_user_registration_path) %> |
+      <%= link_to('Profile', user_path(current_user)) %>
+      <div class="inline-block"><%= alert %></div>
+    <% else %>
+      <%= link_to('註冊', new_user_registration_path) %> |
+      <%= link_to('登入', new_user_session_path) %>
+    <% end %>
+  </div>
+</div>
+<br>
+
+
+
+<div class="container">
+  <ul class="nav nav-tabs">
+    <li role="presentation"><a href="/">Home</a></li>
+    <li role="presentation" class="active"><a href="/restaurants/feeds">最新動態</a></li>
+  </ul>
+  <br>
+  <div class="col-md-6 col-lg-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">最新餐廳</h3>
+      </div>
+      <div class="panel-body">
+        <% @recent_restaurants.each do |restaurant| %>
+            <div class="col-md-6 col-lg-6">
+              <h2><%= restaurant.name %></h2>
+              <p>[<%= restaurant.category.name %>]</p>
+              <ul class="list-unstyled">
+                <li><strong>Opening Hour:</strong> <%= restaurant.opening_hours %></li>
+                <li><strong>Tel:</strong> <%= restaurant.tel %></li>
+                <li><strong>Address:</strong> <%= restaurant.address %></li>
+              </ul>
+              <hr>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-lg-6">
+    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">最新評論</h3>
+    </div>
+    <div class="panel-body">
+      <% @recent_comments.each do |comment| %>
+          <div class="col-md-12">
+            <h4><%= comment.user.email.split("@").first %></h4>
+            <p><%= simple_format comment.content %></p>
+            <p class="text-muted">
+              <em><%= time_ago_in_words(comment.created_at) + " ago - "   %> </em>
+            </p>
+            <hr>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+

@@ -28,14 +28,10 @@ th, td {
   padding: 10px;
 }
 
-.nav {
+.nav-pills-center {
   border: 1px solid #ddd;
   border-radius: 4px;
   margin-bottom: 10px;
-}
-
-
-.nav-pills-center {
   text-align: center;   //li算是text所以可以用這種方式置中
  }
 
@@ -56,3 +52,4 @@ th, td {
 .user_photo{
   display: inline-block;
 }
+

@@ -4,7 +4,7 @@
       Hi, <%= current_user.email %>
         <%= link_to('登出', destroy_user_session_path, method: :delete) %> |
         <%= link_to('修改密碼', edit_user_registration_path) %> |
-        <%= link_to('編輯用戶資料', edit_user_path(current_user)) %>
+        <%= link_to('Profile', user_path(current_user)) %>
         <div class="inline-block"><%= alert %></div>
       <% else %>
         <%= link_to('註冊', new_user_registration_path) %> |
@@ -12,10 +12,14 @@
     <% end %>
   </div>
 </div>
-
+<br>
 <div class="container">
+  <ul class="nav nav-tabs">
+    <li role="presentation"><a href="/">Home</a></li>
+    <li role="presentation" class="active"><a href="/restaurants/feeds">最新動態</a></li>
+  </ul>
+  <br>
   <div class="row">
-
     <ul class="nav nav-pills nav-pills-center">
       <li role="presentation">
         <%= link_to "全部餐廳", root_path %>
