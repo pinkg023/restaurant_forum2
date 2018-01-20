@@ -17,6 +17,9 @@ class User < ApplicationRecord
   #透過comments關聯的方法為User.restaurant
   #而透過favorites關聯的方法為User.favorited_restaurants
 
+  has_many :followships, dependent: :destroy
+  has_many :followings, through: :followships
+
   def admin?
     self.role == "admin"
   end
