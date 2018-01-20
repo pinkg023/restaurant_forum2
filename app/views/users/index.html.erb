@@ -19,6 +19,7 @@
                 <p><%= user.name %></p>
                 <%= image_tag user.image, class: "img-responsive center-block" %>
                 <%= link_to 'Follow', followships_path(following_id: user), method: :post %>
+                <%= link_to 'Unfollow', followship_path(user), method: :delete %>
                 <br>                
               </div>
             </div>
