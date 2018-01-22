@@ -18,6 +18,7 @@ namespace :dev do
 
 
   task fake_user: :environment do
+    Comment.destroy_all
     User.destroy_all
 
     User.create!(email: "test@test",
@@ -39,7 +40,6 @@ namespace :dev do
   end
 
   task fake_comment: :environment do
-    Comment.destroy_all
 
     @restaurants = Restaurant.all
     @restaurants.each do |restaurant|
