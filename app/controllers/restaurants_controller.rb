@@ -24,8 +24,10 @@ class RestaurantsController < ApplicationController
   # POST /restaurants/:id/favorite
   def favorite
     @restaurant = Restaurant.find(params[:id])
+    @restaurant = Restaurant.find(params[:id])
     @restaurant.favorites.create!(user: current_user)
     @restaurant.favorites_count = @restaurant.favorites_count + 1
+    @restaurant.save
     redirect_back(fallback_location: root_path)  # 導回上一頁
   end
 
@@ -40,7 +42,7 @@ class RestaurantsController < ApplicationController
 
   #GET /restaurants/favorites
   def favorites
-    @greatest_restaurants = Restaurant.order(:favorites_count).limit(10)
+    @greatest_restaurants = Restaurant.order(favorites_count: :desc).limit(10)
   end
 
 end
