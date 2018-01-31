@@ -11,7 +11,7 @@ class User < ApplicationRecord
 
   # 「使用者收藏很多餐廳」的多對多關聯
   has_many :favorites, dependent: :destroy            #favorite存在時，刪除user會將favorite一併刪除
-  has_many :favorited_restaurants, through: :favorites, source: :restaurant
+  has_many :favorited_restaurants, through: :favorites, source: :restaurant   #查出來的結果是要對應restaurant那張table的主鍵
 
   #上述兩組User<->Restaurant透過兩張表格關聯，故需要兩個方法名稱
   #透過comments關聯的方法為User.restaurant
@@ -19,6 +19,9 @@ class User < ApplicationRecord
 
   has_many :followships, dependent: :destroy
   has_many :followings, through: :followships
+  #定義與followship相反方向的方法
+  has_many :inverse_followships, class_name: "Followship", foreign_key: "following_id"
+  has_many :followers, through: :inverse_followships, source: :user
 
   def admin?
     self.role == "admin"

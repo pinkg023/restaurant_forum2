@@ -7,7 +7,12 @@
     <div class="col-md-8">
       <h1><%= @user.name %></h1>
       <strong><%= @user.email %></strong>
-      <br><br>
+      <br>
+      <%= @user.comments.count   %>個已評論餐廳, 
+      <%= @user.favorited_restaurants.count   %>個收藏的餐廳, 
+      <%= @user.followings.count   %> followings, 
+      <%= @user.followers.count   %> followers
+      <br>
       <strong>Role:</strong> <%= @user.role %>
       <br>
       <strong>Introduce:</strong> <%= @user.intro %>     
@@ -18,27 +23,84 @@
 </div>
 
 <div class="container">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">
-          <%= @user.comments.count   %>個已評論餐廳
-        </h3>
-    </div>
-    <div class="panel-body">
-      <% @user.comments.each do |comment| %>
-        <div>        
-          <div class="col-sm-3 col-md-2">           
-              <%= image_tag comment.restaurant.image, class: "img-responsive center-block" %><br>
-              <p><%= link_to comment.restaurant.name, restaurant_path(comment.restaurant.id) %></p>
-              <br>                         
+  <div class="col-sm-3 col-md-3">  
+    <div class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">
+            <%= @user.followings.count   %> followings
+          </h3>
+      </div>
+      <div class="panel-body">
+        <% @user.followings.each do |following| %>
+          <div>                 
+                <%= image_tag following.image, class: "img-responsive center-block" %><br>
+                <p><%= link_to following.name, user_path(following.id) %></p>
+                <br>                        
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">
+            <%= @user.followings.count   %> followers
+          </h3>
+      </div>
+      <div class="panel-body">
+        <% @user.followers.each do |follower| %>
+          <div>                 
+                <%= image_tag follower.image, class: "img-responsive center-block" %><br>
+                <p><%= link_to follower.name, user_path(follower.id) %></p>
+                <br>                        
+          </div>
+        <% end %>
+      </div>
+    </div>
+
   </div>
+
+  <div class="col-sm-9 col-md-8"> 
+    <div class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">
+            <%= @user.comments.count   %>個已評論餐廳
+          </h3>
+      </div>
+      <div class="panel-body">
+        <% @user.comments.each do |comment| %>
+          <div>        
+            <div class="col-sm-3 col-md-2">           
+                <%= image_tag comment.restaurant.image, class: "img-responsive center-block" %><br>
+                <p><%= link_to comment.restaurant.name, restaurant_path(comment.restaurant.id) %></p>
+                <br>                         
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div> 
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">
+            <%= @user.favorited_restaurants.count   %>個收藏的餐廳
+          </h3>
+      </div>
+      <div class="panel-body">
+        <% @user.favorited_restaurants.each do |restaurant| %>
+          <div>        
+            <div class="col-sm-3 col-md-2">           
+                <%= image_tag restaurant.image, class: "img-responsive center-block" %><br>
+                <p><%= link_to restaurant.name, restaurant_path(restaurant.id) %></p>
+                <br>                         
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div> 
+  </div>  
+
+
 </div>
-
-
-
 
 
