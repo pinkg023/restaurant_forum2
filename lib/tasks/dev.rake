@@ -3,13 +3,14 @@ namespace :dev do
   task fake_restaurant: :environment do
     Restaurant.destroy_all
 
-    30.times do |i|
+    20.times do |i|
       Restaurant.create!(name: FFaker::Name.first_name,
         opening_hours: FFaker::Time.datetime,
         tel: FFaker::PhoneNumber.short_phone_number,
         address: FFaker::Address.street_address,
         description: FFaker::Lorem.paragraph,
         category: Category.all.sample,
+        image: File.open(File.join(Rails.root, "/public/uploads/user/image/Restaurant/dummy00#{201+i}.jpg"))
       )
     end
     puts "have created fake restaurants"
@@ -33,6 +34,7 @@ namespace :dev do
         password: 12345678,
         intro: FFaker::Lorem.paragraph,
         name: FFaker::Name.first_name,
+        image: File.open(File.join(Rails.root, "/public/uploads/user/image/Avatar/dummy00#{101+i}.jpg"))
       )
     end
     puts "have created fake Users"
