@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :users, :only => [:index, :show, :edit, :update]
+  resources :users, :only => [:index, :show, :edit, :update]  do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+    member do
+      get :both_followed
+    end
+  end
   root "restaurants#index"        #首頁指向 RestaurantsController 的 index action
 
   resources :restaurants, only: [:index, :show] do
@@ -33,5 +37,6 @@ Rails.application.routes.draw do
   end
 
   resources :followships, only: [:create, :destroy]
+  resources :friendships, only: [:create, :destroy]
 
 end

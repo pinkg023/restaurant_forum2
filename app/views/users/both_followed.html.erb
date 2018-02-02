@@ -1,0 +1,22 @@
+<div class="container middle">
+  <div class="col-sm-9 col-md-8"> 
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <%= (@user.followers & @user.followings).count   %> both followed
+        </h3>
+     </div>
+     <div class="panel-body">
+       <% (@user.followers & @user.followings).each do |follower| %>
+          <div>                 
+            <%= image_tag follower.image, class: "img-responsive center-block" %><br>
+           <p><%= link_to follower.name, user_path(follower.id) %></p>
+           <br>                        
+          </div>
+       <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+

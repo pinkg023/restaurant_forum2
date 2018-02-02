@@ -17,7 +17,9 @@
       <br>
       <strong>Introduce:</strong> <%= @user.intro %>     
       <br><br>
-      <button type="button" class="btn btn-primary"><%= link_to('編輯用戶資料', edit_user_path(@user)) %></button>     
+      <button type="button" class="btn btn-primary"><%= link_to('編輯用戶資料', edit_user_path(@user)) %></button>
+        <button type="button" class="btn btn-success"><%= link_to 'BothFollowed', both_followed_user_path() %></button>
+     
     </div>
   </div>
 </div>
@@ -27,11 +29,11 @@
     <div class="panel panel-default">
       <div class="panel-heading">
           <h3 class="panel-title">
-            <%= @user.followings.count   %> followings
+            <%= (@user.followings - (@user.followers & @user.followings)).count   %> followings
           </h3>
       </div>
       <div class="panel-body">
-        <% @user.followings.each do |following| %>
+        <% (@user.followings - (@user.followers & @user.followings)).each do |following| %>
           <div>                 
                 <%= image_tag following.image, class: "img-responsive center-block" %><br>
                 <p><%= link_to following.name, user_path(following.id) %></p>
@@ -44,11 +46,11 @@
     <div class="panel panel-default">
       <div class="panel-heading">
           <h3 class="panel-title">
-            <%= @user.followings.count   %> followers
+            <%= (@user.followers - (@user.followers & @user.followings)).count   %> followers
           </h3>
       </div>
       <div class="panel-body">
-        <% @user.followers.each do |follower| %>
+        <% (@user.followers - (@user.followers & @user.followings)).each do |follower| %>
           <div>                 
                 <%= image_tag follower.image, class: "img-responsive center-block" %><br>
                 <p><%= link_to follower.name, user_path(follower.id) %></p>
@@ -99,7 +101,6 @@
       </div>
     </div> 
   </div>  
-
 
 </div>
 
