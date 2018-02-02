@@ -22,4 +22,5 @@
 
 .byebug_history
 
-/public/uploads
+#push public to heroku
+#/public/uploads
