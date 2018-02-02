@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   end
   root "restaurants#index"        #首頁指向 RestaurantsController 的 index action
 
+  resources :followships, only: [:create, :destroy]
+
   resources :restaurants, only: [:index, :show] do
     resources :comments, only: [:create, :destroy]
 
